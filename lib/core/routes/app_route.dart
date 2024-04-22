@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../features/auth/presentions/screens/sign_in_screen.dart';
 import '../../features/onboarding/logic/cubit/onboarding_cubit.dart';
 import '../../features/onboarding/presention/screens/loading_screen.dart';
 import '../../features/onboarding/presention/screens/onboarding_screen.dart';
@@ -28,12 +29,12 @@ class AppRoute {
               create: (context) => getIt<OnboardingCubit>(),
               child: const OnboardingScreen(),
             ));
-     // case Routes.loginScreen:
-     //    return MaterialPageRoute(builder: (_) =>
-     //        BlocProvider(
-     //          create: (context) => getIt<OnboardingCubit>(),
-     //          child: const SignInScreen(),
-     //        ));
+     case Routes.loginScreen:
+        return MaterialPageRoute(builder: (_) =>
+            BlocProvider(
+              create: (context) => getIt<OnboardingCubit>(),
+              child: const SignInScreen(),
+            ));
     }
     return null;
   }
