@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stylish/features/auth/logic/cubits/auth_cubit.dart';
 
-import '../../data/repository/sign_in_repo.dart';
 
 
 
@@ -15,13 +16,11 @@ class SignInScreen extends StatelessWidget {
           child: Column(
             children: [
               ElevatedButton(onPressed: ()async{
-                await SignInRepo().signInWithGoogle();
+                BlocProvider.of<AuthCubit>(context).signUpWithGoogle();
               }, child: Text('Sign In with google')),
               SizedBox(height: 20,),
               ElevatedButton(onPressed: (){
-                SignInRepo().signInWithFacebook().then((value){
-                  print(value.user?.email);
-                });
+
               }, child: Text('Sign In with facebook')),
             ],
           ),

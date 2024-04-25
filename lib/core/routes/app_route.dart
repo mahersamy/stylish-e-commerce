@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stylish/features/auth/logic/cubits/auth_cubit.dart';
 
 import '../../features/auth/presentions/screens/sign_in_screen.dart';
 import '../../features/onboarding/logic/cubit/onboarding_cubit.dart';
@@ -32,7 +33,7 @@ class AppRoute {
      case Routes.loginScreen:
         return MaterialPageRoute(builder: (_) =>
             BlocProvider(
-              create: (context) => getIt<OnboardingCubit>(),
+              create: (context) => getIt<AuthCubit>(),
               child: const SignInScreen(),
             ));
     }

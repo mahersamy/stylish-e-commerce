@@ -95,6 +95,6 @@ Map<String, String> authErrors = {
 "web-storage-unsupported": "This browser is not supported or 3rd party cookies and data may be disabled."
 };
 
-String? firebase_auth_hundler(FirebaseAuthException e) {
-  return authErrors[e.code];
+String firebaseAuthHundler(FirebaseAuthException e) {
+  return authErrors[e.code] ?? e.code;
 }
