@@ -8,10 +8,15 @@ class AppTheme {
   ThemeData lightTheme() {
     return ThemeData(
       primaryColor: AppColors.mainColor,
-      textTheme: TextTheme(headlineLarge: TextStyles.font54WhiteBold,
+      textTheme: TextTheme(
+        headlineLarge: TextStyles.font54WhiteBold,
+        headlineMedium: TextStyles.font30BlackBold,
+        bodySmall: TextStyles.body12px,
+        labelSmall: TextStyles.body14px,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
+          // padding:WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 10.h,horizontal: 120.w)),
           backgroundColor: WidgetStateProperty.all(AppColors.mainColor),
           shape: WidgetStateProperty.all(
             RoundedRectangleBorder(
@@ -20,9 +25,17 @@ class AppTheme {
           ),
         ),
       ),
+      inputDecorationTheme: InputDecorationTheme(
+        labelStyle: TextStyles.body14px!.copyWith(color: AppColors.neutral4),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: AppColors.neutral4),
+        ),
+        border:const UnderlineInputBorder(
+          borderSide: BorderSide(color: AppColors.mainColor),
+        ),
+      ),
     );
   }
-
 
   ThemeData darkTheme() {
     return ThemeData();

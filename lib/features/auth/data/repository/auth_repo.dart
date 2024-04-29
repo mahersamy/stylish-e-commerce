@@ -40,9 +40,8 @@ class AuthRepo {
       // Once signed in, return the UserCredential
       UserCredential userCredential =await FirebaseAuth.instance.signInWithCredential(credential);
 
-      if(isSignUp==true) {
-        print("add user");
-        await addUserToFireStore(userCredential);
+      if(isSignUp) {
+        await addUserToFireStoreWithCredential(userCredential);
       }
       return Right(userCredential);
     } on FirebaseAuthException catch (e) {
@@ -62,7 +61,7 @@ class AuthRepo {
       // Once signed in, return the UserCredential
       UserCredential userCredential =await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
       if(isSignUp) {
-        await addUserToFireStore(userCredential);
+        await addUserToFireStoreWithCredential(userCredential);
       }
       return Right(userCredential);
     } on FirebaseAuthException catch (e) {
@@ -84,7 +83,7 @@ class AuthRepo {
     }
   }
 
-  Future<void> addUserToFireStore(UserCredential userCredential) async {
+  Future<void> addUserToFireStoreWithCredential(UserCredential userCredential) async {
     try{
       FirebaseFirestore.instance.collection(AppStrings.users).add({
         AppStrings.uid: userCredential.user?.uid,
@@ -94,6 +93,21 @@ class AuthRepo {
       });
     }on FirebaseException catch (e){
         print(e);
+    }
+  }
+
+
+  Future<Either<String?, Unit>> addUserToFireStoreNotWithCredential(UserCredential userCredential, String name, String phone) async {
+    try{
+      FirebaseFirestore.instance.collection(AppStrings.users).add({
+        AppStrings.uid: userCredential.user?.uid,
+        AppStrings.name: name,
+        AppStrings.email: userCredential.user?.email,
+        AppStrings.phoneNumber: phone,
+      });
+      return const Right(unit);
+    }on FirebaseException catch (e){
+      return Left(e.message);
     }
   }
 

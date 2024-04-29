@@ -44,7 +44,7 @@ class OnboardingWidget extends StatelessWidget {
                   if(BlocProvider.of<OnboardingCubit>(context).currentIndex!=2){
                     BlocProvider.of<OnboardingCubit>(context).changeIndex(BlocProvider.of<OnboardingCubit>(context).currentIndex+1);
                   }else{
-                    context.pushReplacementNamed(Routes.loginScreen);
+                    context.pushReplacementNamed(Routes.signInScreen);
                   }
                 },
               ),
