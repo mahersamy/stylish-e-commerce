@@ -34,6 +34,12 @@ class AppTheme {
           borderSide: BorderSide(color: AppColors.mainColor),
         ),
       ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        type: BottomNavigationBarType.fixed, // Fixed
+        selectedItemColor: AppColors.mainColor,
+        unselectedItemColor: AppColors.neutral4,
+        elevation: 10,
+      ),
     );
   }
 

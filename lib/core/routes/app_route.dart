@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish/features/auth/logic/cubits/auth_cubit.dart';
 import 'package:stylish/features/auth/presentions/screens/sign_up_screen.dart';
+import 'package:stylish/features/home/presention/screens/home_layout.dart';
 
 import '../../features/auth/presentions/screens/sign_in_screen.dart';
 import '../../features/onboarding/logic/cubit/onboarding_cubit.dart';
@@ -16,6 +17,8 @@ class Routes {
   static const String onboardingScreen = "/onboardingScreen";
   static const String signInScreen = "/signInScreen";
   static const String signUpScreen = "/signUpScreen";
+  static const String homeLayout = "/homeLayout";
+
 
 
 }
@@ -38,6 +41,8 @@ class AppRoute {
       case Routes.signUpScreen:
         return MaterialPageRoute(builder: (_) =>
             const SignUpScreen());
+      case Routes.homeLayout:
+        return MaterialPageRoute(builder: (_) => const HomeLayout());
     }
     return null;
   }

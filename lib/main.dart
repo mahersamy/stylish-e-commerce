@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:stylish/features/home/logic/cubits/home_cubit.dart';
 
 import 'core/di/dependency_injection.dart';
 import 'core/routes/app_route.dart';
@@ -20,6 +21,7 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => getIt<AuthCubit>()),
+        BlocProvider(create: (context) => getIt<HomeCubit>()),
       ],
       child: MyApp(),
     ),
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
         theme: AppTheme().lightTheme(),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: appRoute.generateRoute,
-        initialRoute: Routes.signInScreen,
+        initialRoute: Routes.homeLayout,
       ),
     );
   }
