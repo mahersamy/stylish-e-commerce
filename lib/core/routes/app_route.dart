@@ -6,6 +6,8 @@ import 'package:stylish/features/auth/presentions/screens/sign_up_screen.dart';
 import 'package:stylish/features/home/presention/screens/home_layout.dart';
 
 import '../../features/auth/presentions/screens/sign_in_screen.dart';
+import '../../features/home/data/models/home_model.dart';
+import '../../features/home/presention/screens/category_screen.dart';
 import '../../features/onboarding/logic/cubit/onboarding_cubit.dart';
 import '../../features/onboarding/presention/screens/loading_screen.dart';
 import '../../features/onboarding/presention/screens/onboarding_screen.dart';
@@ -18,6 +20,7 @@ class Routes {
   static const String signInScreen = "/signInScreen";
   static const String signUpScreen = "/signUpScreen";
   static const String homeLayout = "/homeLayout";
+  static const String allCategoryScreen = "/AllCategoryScreen";
 
 
 
@@ -43,6 +46,9 @@ class AppRoute {
             const SignUpScreen());
       case Routes.homeLayout:
         return MaterialPageRoute(builder: (_) => const HomeLayout());
+      case Routes.allCategoryScreen:
+        final List<CategoryModel> categoryModel = settings.arguments as List<CategoryModel>;
+        return MaterialPageRoute(builder: (_) => CategoryScreen(categoryModelList: categoryModel,));
     }
     return null;
   }

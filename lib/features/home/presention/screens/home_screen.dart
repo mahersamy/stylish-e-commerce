@@ -2,11 +2,15 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:stylish/core/helpers/extentions.dart';
+import 'package:stylish/core/routes/app_route.dart';
 import 'package:stylish/core/shared_widgets/custom_circular.dart';
 import 'package:stylish/core/utils/app_colors.dart';
 import 'package:stylish/features/home/data/models/home_model.dart';
 import 'package:stylish/features/home/logic/cubits/home_cubit.dart';
 import 'package:stylish/features/home/presention/widgets/circular_category_item.dart';
+
+import '../widgets/banner_item.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -35,6 +39,12 @@ class _HomeScreenState extends State<HomeScreen> {
         if (state is HomeSuccess) {
           return Column(
             children: [
+              SizedBox(
+                height: 222.h,
+                  width: double.infinity,
+                  child: BannerItem(
+                listOfImages: state.homeModel.banner,
+              )),
               category(context, state.homeModel),
             ],
           );
@@ -63,7 +73,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: Theme.of(context).textTheme.titleLarge),
               const Spacer(),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.pushNamed(Routes.allCategoryScreen,
+                      arguments: homeModel.category);
+                },
                 child: Text(
                   "All Categories",
                   style: Theme.of(context).textTheme.bodySmall,

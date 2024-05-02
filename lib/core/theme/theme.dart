@@ -10,7 +10,8 @@ class AppTheme {
       primaryColor: AppColors.mainColor,
       textTheme: TextTheme(
         headlineLarge: TextStyles.font54WhiteBold,
-        headlineMedium: TextStyles.font30BlackBold,
+        headlineMedium: TextStyles.font27BlackBold,
+        headlineSmall: TextStyles.font20BlackBold,
         bodySmall: TextStyles.body12px,
         labelSmall: TextStyles.body14px,
       ),

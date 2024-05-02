@@ -9,8 +9,15 @@ class TextStyles{
     fontWeight: FontWeight.bold,
     color: AppColors.neutral9,
   );
-  static TextStyle? font30BlackBold = TextStyle(
+  static TextStyle? font27BlackBold = TextStyle(
     fontSize: 27.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.neutral1,
+  );
+
+
+  static TextStyle? font20BlackBold = TextStyle(
+    fontSize: 20.sp,
     fontWeight: FontWeight.bold,
     color: AppColors.neutral1,
   );
