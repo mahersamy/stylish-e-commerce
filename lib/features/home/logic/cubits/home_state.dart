@@ -9,9 +9,6 @@ final class HomeInitial extends HomeState {}
 final class HomeLoading extends HomeState {}
 
 final class HomeSuccess extends HomeState {
-  final HomeModel homeModel;
-
-  HomeSuccess(this.homeModel);
 }
 
 final class HomeError extends HomeState {
@@ -19,3 +16,18 @@ final class HomeError extends HomeState {
 
   HomeError(this.message);
 }
+
+final class GetCategoryProductSuccess extends HomeState {
+  final List<ProductModel> productModels;
+
+  GetCategoryProductSuccess({required this.productModels});
+}
+
+final class GetCategoryProductError extends HomeState {
+  final String message;
+
+  GetCategoryProductError({required this.message});
+}
+
+final class GetCategoryProductLoading extends HomeState {}
+
