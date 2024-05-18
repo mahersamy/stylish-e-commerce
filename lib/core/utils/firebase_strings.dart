@@ -7,7 +7,11 @@ class FirebaseStrings {
   static const String category = "category";
 
   static const String products = "products";
+  static const String headImages = "head_images";
   static const String home = "home";
   static const String description = "description";
   static const String colors = "color";
+  static const String rating = "rating";
+  static const String sizes = "sizes";
+
 }

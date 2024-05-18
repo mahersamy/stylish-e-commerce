@@ -4,15 +4,22 @@ class ProductModel {
   final String name;
   final int price;
   final String image;
+  final List<String>? headImages;
   final String? description;
+  final List<String>? sizes;
   final List<String>? colors;
+  final String? rating;
 
   ProductModel(
-      {required this.colors,
+      {required this.headImages,
+      required this.colors,
       required this.name,
       required this.price,
       required this.image,
-      required this.description});
+      required this.description,
+      required this.rating,
+        required this.sizes
+     });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
@@ -20,7 +27,12 @@ class ProductModel {
       price: json[FirebaseStrings.price],
       image: json[FirebaseStrings.image],
       description: json[FirebaseStrings.description],
-      colors: List.from(json[FirebaseStrings.colors].map((color) => color.toString())),
+      colors: List.from(
+          json[FirebaseStrings.colors].map((color) => color.toString())),
+      headImages: List.from(
+          json[FirebaseStrings.headImages]),
+      sizes:List.from(json[FirebaseStrings.sizes]),
+      rating: json[FirebaseStrings.rating],
     );
   }
 }

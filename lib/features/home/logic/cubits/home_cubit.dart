@@ -13,8 +13,6 @@ class HomeCubit extends Cubit<HomeState> {
 
   final HomeRepo homeRepo;
   HomeModel? homeModel;
-  PageController pageController=PageController();
-
   List screens = [];
 
   Future<void> getHome() async {

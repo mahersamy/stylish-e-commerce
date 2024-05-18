@@ -5,6 +5,8 @@ class AppAssets{
   static const String onboardingImage3="assets/images/on_boarding3.png";
   static const String loadingImage="assets/images/loading.png";
   static const String logo="assets/images/nilah.png";
+  static const String vector="assets/images/Vector.png";
+
 
 
 

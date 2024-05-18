@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:stylish/features/home/logic/cubits/home_cubit.dart';
 
 class BannerItem extends StatelessWidget {
-  const BannerItem({super.key, required this.listOfImages});
+   BannerItem({super.key, required this.listOfImages,this.alignment=Alignment.bottomCenter});
 
   final List<String> listOfImages;
+  final PageController pageController = PageController();
+  final Alignment alignment;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         PageView.builder(
-          controller: BlocProvider.of<HomeCubit>(context).pageController,
+          controller: pageController,
           itemCount: listOfImages.length,
           itemBuilder: (context, index) {
             return Image.network(
@@ -23,11 +23,11 @@ class BannerItem extends StatelessWidget {
           },
         ),
         Align(
-          alignment: Alignment.bottomCenter,
+          alignment: alignment,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: SmoothPageIndicator(
-                controller: BlocProvider.of<HomeCubit>(context).pageController,
+                controller: pageController,
                 count: listOfImages.length,
                 effect: SlideEffect(
                     spacing: 8.0,

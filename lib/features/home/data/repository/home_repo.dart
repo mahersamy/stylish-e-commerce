@@ -11,9 +11,10 @@ class HomeRepo {
       final response = await FirebaseFirestore.instance
           .collection(FirebaseStrings.home)
           .get();
+
       return Right(HomeModel.fromJson(response.docs.first.data()));
     } catch (e) {
-      throw e.toString();
+      throw e;
       return const Left("please try again");
     }
   }
