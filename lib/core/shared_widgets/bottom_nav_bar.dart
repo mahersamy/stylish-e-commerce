@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../utils/app_colors.dart';
+import '../../features/home/logic/cubits/home_cubit.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({super.key});
@@ -9,7 +9,10 @@ class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: 0,
+      onTap: (index){
+        BlocProvider.of<HomeCubit>(context).changeIndex(index);
+      },
+      currentIndex: BlocProvider.of<HomeCubit>(context).currentIndex,
       items: const [
         BottomNavigationBarItem(
 

@@ -3,6 +3,7 @@ import '../../../../core/utils/firebase_strings.dart';
 class ProductModel {
   final String name;
   final int price;
+  final int id;
   final String image;
   final List<String>? headImages;
   final String? description;
@@ -18,11 +19,13 @@ class ProductModel {
       required this.image,
       required this.description,
       required this.rating,
-        required this.sizes
+        required this.sizes,
+      required this.id
      });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
+      id: json["id"],
       name: json[FirebaseStrings.name],
       price: json[FirebaseStrings.price],
       image: json[FirebaseStrings.image],
@@ -33,6 +36,7 @@ class ProductModel {
           json[FirebaseStrings.headImages]),
       sizes:List.from(json[FirebaseStrings.sizes]),
       rating: json[FirebaseStrings.rating],
+
     );
   }
 }
