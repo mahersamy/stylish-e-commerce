@@ -15,13 +15,14 @@ class CartCubit extends Cubit<CartState> {
     for (var element in cartList) {
       totalPrice += element.productModel.price * element.quantity;
     }
-    emit(CartInitial());
+    emit(TotalPriceChanged());
   }
 
   void increment(CartModel cartModel) {
     cartModel.quantity++;
     totalPrice += cartModel.productModel.price;
     emit(CounterChanged());
+    emit(TotalPriceChanged());
   }
 
   void decrement(CartModel cartModel) {
@@ -29,6 +30,7 @@ class CartCubit extends Cubit<CartState> {
       cartModel.quantity--;
       totalPrice -= cartModel.productModel.price;
       emit(CounterChanged());
+      emit(TotalPriceChanged());
     }
   }
 }
