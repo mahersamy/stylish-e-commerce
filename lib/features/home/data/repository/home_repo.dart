@@ -39,11 +39,12 @@ class HomeRepo {
         ),
       );
     } catch (e) {
+
       return Left(e.toString());
     }
   }
 
-  Future<Either<String, List<dynamic>>> getFavoriteProduct(String docPath) async {
+  Future<Either<String, List<dynamic>>> getFavoriteProductID(String docPath) async {
     try {
       final response = await FirebaseFirestore.instance
           .collection(FirebaseStrings.users)
@@ -75,4 +76,41 @@ class HomeRepo {
       return Left(e.toString());
     }
   }
+
+
+  // Future<Either<String, List<ProductModel>>> getAllFavoriteProduct(
+  //     List<int> productId) async {
+  //   try {
+  //     final response = await FirebaseFirestore.instance
+  //         .collection(FirebaseStrings.products)
+  //         .where(FirebaseStrings.id, whereIn: productId)
+  //         .get();
+  //     return Right(List.from(response.docs.map((e) => ProductModel.fromJson(e.data(),),),),);
+  //   } catch (e) {
+  //     throw e;
+  //     return Left(e.toString());
+  //   }
+  // }
+
+  Future<Either<String, List<ProductModel>>> getAllFavoriteProduct(List<int> productId) async {
+    try {
+      // Check if productId list is empty
+      if (productId.isEmpty) {
+        return const Right([]); // Return an empty list if no product IDs are provided
+      }
+
+      final response = await FirebaseFirestore.instance
+          .collection(FirebaseStrings.products)
+          .where(FirebaseStrings.id, whereIn: productId)
+          .get();
+      return Right(List.from(
+        response.docs.map(
+              (e) => ProductModel.fromJson(e.data()),
+        ),
+      ));
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
 }

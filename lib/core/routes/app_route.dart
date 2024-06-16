@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish/features/auth/presentions/screens/sign_up_screen.dart';
+import 'package:stylish/features/cart/presentions/screens/cart_screen.dart';
 import 'package:stylish/features/home/presention/screens/home_layout.dart';
 import 'package:stylish/features/home/presention/screens/product_detail_screen.dart';
 
+import '../ shared_model/cart_model.dart';
 import '../../features/auth/presentions/screens/sign_in_screen.dart';
 import '../../features/home/data/models/home_model.dart';
 import '../../features/home/data/models/product_model.dart';
@@ -24,14 +26,17 @@ class Routes {
   static const String allCategoryScreen = "/AllCategoryScreen";
   static const String categoryScreen = "/categoryScreen";
   static const String productDetailScreen = "/productDetailScreen";
+  static const String cartScreen = "/cartScreen";
 
 }
 
 class AppRoute {
   Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
+
       case Routes.initRoute:
         return MaterialPageRoute(builder: (_) => const LoadingScreen());
+
       case Routes.onboardingScreen:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
@@ -40,10 +45,13 @@ class AppRoute {
                 ));
       case Routes.signInScreen:
         return MaterialPageRoute(builder: (_) => const SignInScreen());
+
       case Routes.signUpScreen:
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
+
       case Routes.homeLayout:
         return MaterialPageRoute(builder: (_) => const HomeLayout());
+
       case Routes.allCategoryScreen:
         final dynamic arguments = settings.arguments;
         final List<CategoryModel> categoryModel = arguments[0];
@@ -51,6 +59,7 @@ class AppRoute {
             builder: (_) => AllCategoryScreen(
                   categoryModelList: categoryModel,
                 ));
+
       case Routes.categoryScreen:
         final dynamic arguments = settings.arguments;
         final CategoryModel categoryModel = arguments[0];
@@ -64,6 +73,12 @@ class AppRoute {
         final ProductModel productModel = arguments[0];
         return MaterialPageRoute(
             builder: (_) => ProductDetailScreen(productModel: productModel));
+
+      case Routes.cartScreen:
+        final dynamic arguments = settings.arguments;
+        final List<CartModel> cartList = arguments;
+        return MaterialPageRoute(
+            builder: (_) => CartScreen(cartList: cartList));
     }
     return null;
   }

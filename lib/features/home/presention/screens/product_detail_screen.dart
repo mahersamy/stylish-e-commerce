@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:stylish/core/%20shared_model/cart_model.dart';
 import 'package:stylish/core/helpers/toast_helper.dart';
 import 'package:stylish/core/shared_widgets/custom_button.dart';
 import 'package:stylish/core/utils/app_assets.dart';
@@ -26,103 +27,112 @@ class ProductDetailScreen extends StatefulWidget {
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   void initState() {
-    BlocProvider.of<HomeCubit>(context).getFavoriteProduct();
+    BlocProvider.of<HomeCubit>(context).getAllFavoriteProduct();
     super.initState();
 
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
         if (state is SetFavoriteProductSuccess) {
-          ToastHelper().showSuccessToast("update To Favorite");
+          // ToastHelper().showSuccessToast("Added To Favorite");
         } else if (state is SetFavoriteProductError) {
           ToastHelper().showErrorToast("Failed To update To Favorite");
-        } else if (state is GetFavoriteProductSuccess) {
-          ToastHelper().showSuccessToast("Get Favorite");
         } else if (state is GetFavoriteProductError) {
           ToastHelper().showErrorToast("Failed To Get Favorite");
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                headerScreen(context, widget.productModel),
-                Padding(
-                  padding: const EdgeInsets.all(8.0).w,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ratingSelection(context, widget.productModel),
-                      Text(
-                        widget.productModel.name!,
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Text(
-                        widget.productModel.description!,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(color: AppColors.neutral4),
-                      ),
-                      SizedBox(
-                        height: 24.h,
-                      ),
-                      colorSelection(context, widget.productModel),
-                      sizeSelection(context, widget.productModel),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          bottomNavigationBar: Material(
-            elevation: 5,
-            child: SizedBox(
-              height: 85.h,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25).w,
-                    child: Text(
-                      "\$ ${widget.productModel.price.toDouble()}",
-                      style: Theme.of(context).textTheme.displaySmall,
-                    ),
-                  ),
-                  Container(
-                    width: 2.w,
-                    height: 30.h,
-                    color: AppColors.neutral5,
-                  ),
-                  SizedBox(
-                    width: 8.w,
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      BlocProvider.of<HomeCubit>(context)
-                          .setFavoriteProduct(widget.productModel.id);
+        return PopScope(
+          canPop: false,
+          onPopInvoked: (val){
+            BlocProvider.of<HomeCubit>(context).getAllFavoriteProduct();
 
-                    },
-                    icon: Icon(BlocProvider.of<HomeCubit>(context).checkFavorite(widget.productModel.id)?Icons.favorite:Icons.favorite_outline),
-                    color: AppColors.mainColor,
-                  ),
-                  CustomButton(
-                      widget: Text(
-                        "Add To Cart",
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelSmall!
-                            .copyWith(color: AppColors.neutral9),
-                      ),
-                      onPressed: () {},
-                      height: 40,
-                      width: 138)
+          },
+          child: Scaffold(
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  headerScreen(context, widget.productModel),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0).w,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ratingSelection(context, widget.productModel),
+                        Text(
+                          widget.productModel.name!,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Text(
+                          widget.productModel.description!,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .copyWith(color: AppColors.neutral4),
+                        ),
+                        SizedBox(
+                          height: 24.h,
+                        ),
+                        colorSelection(context, widget.productModel),
+                        sizeSelection(context, widget.productModel),
+                      ],
+                    ),
+                  )
                 ],
+              ),
+            ),
+            bottomNavigationBar: Material(
+              elevation: 5,
+              child: SizedBox(
+                height: 85.h,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25).w,
+                      child: Text(
+                        "\$ ${widget.productModel.price.toDouble()}",
+                        style: Theme.of(context).textTheme.displaySmall,
+                      ),
+                    ),
+                    Container(
+                      width: 2.w,
+                      height: 30.h,
+                      color: AppColors.neutral5,
+                    ),
+                    SizedBox(
+                      width: 8.w,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        BlocProvider.of<HomeCubit>(context).setFavoriteProduct(widget.productModel.id);
+
+                      },
+                      icon: Icon(BlocProvider.of<HomeCubit>(context).checkFavorite(widget.productModel.id)?Icons.favorite:Icons.favorite_outline),
+                      color: AppColors.mainColor,
+                    ),
+                    CustomButton(
+                        widget: Text(
+                          "Add To Cart",
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelSmall!
+                              .copyWith(color: AppColors.neutral9),
+                        ),
+                        onPressed: () {
+                          BlocProvider.of<HomeCubit>(context).addToCart(widget.productModel);
+
+                          print(BlocProvider.of<HomeCubit>(context).cartList[0].selectedSize);
+                        },
+                        height: 40,
+                        width: 138)
+                  ],
+                ),
               ),
             ),
           ),
@@ -144,7 +154,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         Padding(
           padding: const EdgeInsets.only(top: 55, left: 10),
           child: TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                BlocProvider.of<HomeCubit>(context).getCategoryProduct(widget.productModel.categoryName!);
+                Navigator.pop(context);
+              },
               child: Image.asset(AppAssets.vector)),
         ),
       ],

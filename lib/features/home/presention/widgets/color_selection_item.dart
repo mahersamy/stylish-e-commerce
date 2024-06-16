@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:stylish/features/home/logic/cubits/home_cubit.dart';
 
 
 
@@ -18,6 +20,9 @@ class _ColorSelectionItemState extends State<ColorSelectionItem> {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<HomeCubit>(context).selectedColor=widget.colors[_currentIndex];
+
+
     return SizedBox(
       height: 48.h,
       width: double.infinity,
@@ -41,6 +46,7 @@ class _ColorSelectionItemState extends State<ColorSelectionItem> {
             onTap: () {
               setState(() {
                 _currentIndex = index;
+                BlocProvider.of<HomeCubit>(context).selectedColor=widget.colors[index];
               });
             },
             child: Container(

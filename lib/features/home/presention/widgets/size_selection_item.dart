@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stylish/core/utils/app_colors.dart';
+
+import '../../logic/cubits/home_cubit.dart';
 
 class SizeSelectionItem extends StatefulWidget {
    SizeSelectionItem({super.key, required this.sizes });
 
-  int _currentIndex = 0;
   final List<String> sizes;
 
   @override
@@ -13,8 +15,12 @@ class SizeSelectionItem extends StatefulWidget {
 }
 
 class _SizeSelectionItemState extends State<SizeSelectionItem> {
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<HomeCubit>(context).selectedSize=widget.sizes[_currentIndex];
+
     return SizedBox(
       height: 50.h,
       width: 300.w,
@@ -33,7 +39,9 @@ class _SizeSelectionItemState extends State<SizeSelectionItem> {
     return InkWell(
       onTap: (){
         setState(() {
-          widget._currentIndex = index;
+          _currentIndex = index;
+          BlocProvider.of<HomeCubit>(context).selectedSize=widget.sizes[index];
+
         });
       },
       child: Container(
@@ -42,9 +50,9 @@ class _SizeSelectionItemState extends State<SizeSelectionItem> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
           border: Border.all(color: AppColors.neutral4, width: 1.0),
-          color: widget._currentIndex == index ? AppColors.neutral1 : AppColors.neutral9,
+          color: _currentIndex == index ? AppColors.neutral1 : AppColors.neutral9,
         ),
-        child: Center(child: Text(size,style:Theme.of(context).textTheme.labelSmall!.copyWith(color: widget._currentIndex == index ? AppColors.neutral9 : AppColors.neutral1),)),
+        child: Center(child: Text(size,style:Theme.of(context).textTheme.labelSmall!.copyWith(color: _currentIndex == index ? AppColors.neutral9 : AppColors.neutral1),)),
 
       ),
     );

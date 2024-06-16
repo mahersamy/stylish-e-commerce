@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stylish/core/helpers/extentions.dart';
 
 import '../../features/home/logic/cubits/home_cubit.dart';
+import '../routes/app_route.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({super.key});
@@ -10,12 +12,16 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       onTap: (index){
-        BlocProvider.of<HomeCubit>(context).changeIndex(index);
+        if(index == 2){
+          context.pushNamed(Routes.cartScreen,arguments:BlocProvider.of<HomeCubit>(context).cartList);
+        }else{
+          BlocProvider.of<HomeCubit>(context).changeIndex(index);
+        }
+
       },
       currentIndex: BlocProvider.of<HomeCubit>(context).currentIndex,
       items: const [
         BottomNavigationBarItem(
-
           icon: Icon(Icons.home),
           label: "Home",
         ),

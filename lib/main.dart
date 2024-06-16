@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:stylish/core/%20shared_model/cart_model.dart';
+import 'package:stylish/features/cart/logic/cubits/cart_cubit.dart';
 import 'package:stylish/features/home/logic/cubits/home_cubit.dart';
 
 import 'core/di/dependency_injection.dart';
@@ -22,6 +24,7 @@ void main() async {
       providers: [
         BlocProvider(create: (context) => getIt<AuthCubit>()),
         BlocProvider(create: (context) => getIt<HomeCubit>()),
+        BlocProvider(create: (context) => getIt<CartCubit>()),
       ],
       child: MyApp(),
     ),

@@ -6,6 +6,7 @@ class FirebaseStrings {
   static const String categories = "categories";
   static const String category = "category";
   static const String users = "users";
+  static const String id = "id";
 
 
   static const String products = "products";

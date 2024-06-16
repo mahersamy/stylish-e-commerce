@@ -19,12 +19,13 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
+
+
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    BlocProvider.of<HomeCubit>(context)
-        .getCategoryProduct(widget.categoryModel.name);
+    BlocProvider.of<HomeCubit>(context).getCategoryProduct(widget.categoryModel.name);
   }
 
   @override
@@ -47,9 +48,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   fit: BoxFit.fill,
                 ),
               ),
-              // if(state is GetCategoryProductLoading)
-              //   const CustomCircular(),
-              // if(state is GetCategoryProductSuccess)
               Align(
                 alignment: Alignment.bottomCenter,
                 child: SingleChildScrollView(
@@ -59,9 +57,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         padding: EdgeInsets.all(8.h),
                         height: 620.h,
                         color: AppColors.neutral9,
-                        child: state is GetCategoryProductSuccess
+                        child: state is GetCategoryProductSuccess || BlocProvider.of<HomeCubit>(context).categoryProductList.isNotEmpty
                             ? CustomGridView(
-                                productModel: state.productModels,
+                                productModel: BlocProvider.of<HomeCubit>(context).categoryProductList,
                               )
                             : const Center(child: CustomCircular()),
                       ),

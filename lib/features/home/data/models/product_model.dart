@@ -10,9 +10,12 @@ class ProductModel {
   final List<String>? sizes;
   final List<String>? colors;
   final String? rating;
+  final String? categoryName;
 
   ProductModel(
-      {required this.headImages,
+      {
+        required this.categoryName,
+        required this.headImages,
       required this.colors,
       required this.name,
       required this.price,
@@ -25,17 +28,18 @@ class ProductModel {
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-      id: json["id"],
+      id: json[FirebaseStrings.id],
       name: json[FirebaseStrings.name],
       price: json[FirebaseStrings.price],
       image: json[FirebaseStrings.image],
-      description: json[FirebaseStrings.description],
+      description: json[FirebaseStrings.description]??"description",
+      rating: json[FirebaseStrings.rating]??"null",
+      categoryName: json[FirebaseStrings.category]??"category",
+      sizes:List.from(json[FirebaseStrings.sizes]??["sizes"]),
       colors: List.from(
-          json[FirebaseStrings.colors].map((color) => color.toString())),
+          json[FirebaseStrings.colors]??[].map((color) => color.toString())),
       headImages: List.from(
-          json[FirebaseStrings.headImages]),
-      sizes:List.from(json[FirebaseStrings.sizes]),
-      rating: json[FirebaseStrings.rating],
+          json[FirebaseStrings.headImages]??[]),
 
     );
   }

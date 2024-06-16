@@ -29,7 +29,7 @@ class SignInScreen extends StatelessWidget {
             }
             if (state is AuthSuccess) {
               ToastHelper().showSuccessToast("Login Successful");
-              context.pushNamed(Routes.homeLayout);
+              context.pushReplacementNamed(Routes.homeLayout);
             }
           },
           builder: (context, state) {

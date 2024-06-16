@@ -32,15 +32,32 @@ final class GetCategoryProductError extends HomeState {
 final class GetCategoryProductLoading extends HomeState {}
 
 
-final class GetFavoriteProductSuccess extends HomeState {}
 
 final class GetFavoriteProductError extends HomeState {}
+
+
+
+final class GetAllFavoriteProductLoading extends HomeState {}
+
+final class GetAllFavoriteProductSuccess extends HomeState {
+  final List<ProductModel> productModels;
+
+  GetAllFavoriteProductSuccess({required this.productModels});
+
+}
+final class GetAllFavoriteProductError extends HomeState {}
 
 
 
 final class SetFavoriteProductSuccess extends HomeState {}
 
 final class SetFavoriteProductError extends HomeState {}
+
+
+
+
+final class AddToCartSuccess extends HomeState {}
+final class UpdateCartSuccess extends HomeState {}
 
 
 
