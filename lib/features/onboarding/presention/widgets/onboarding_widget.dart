@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,7 +44,7 @@ class OnboardingWidget extends StatelessWidget {
                   if(BlocProvider.of<OnboardingCubit>(context).currentIndex!=2){
                     BlocProvider.of<OnboardingCubit>(context).changeIndex(BlocProvider.of<OnboardingCubit>(context).currentIndex+1);
                   }else{
-                    context.pushReplacementNamed(Routes.loginScreen);
+                    context.pushReplacementNamed(Routes.signInScreen);
                   }
                 },
               ),

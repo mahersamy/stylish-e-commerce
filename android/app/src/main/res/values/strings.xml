@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">stylish</string>
+    <string name="facebook_app_id">1130298358170203</string>
+    <string name="fb_login_protocol_scheme">fb740b91e98e1f2c545fb4a454e1bd6035</string>
+    <string name="facebook_client_token">e584f08eba1a3444bd2c95c943acfcd9</string>
+
+</resources>
