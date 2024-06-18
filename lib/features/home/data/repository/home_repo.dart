@@ -16,7 +16,7 @@ class HomeRepo {
 
       return Right(HomeModel.fromJson(response.docs.first.data()));
     } catch (e) {
-      throw e;
+      rethrow;
       return const Left("please try again");
     }
   }
@@ -78,19 +78,6 @@ class HomeRepo {
   }
 
 
-  // Future<Either<String, List<ProductModel>>> getAllFavoriteProduct(
-  //     List<int> productId) async {
-  //   try {
-  //     final response = await FirebaseFirestore.instance
-  //         .collection(FirebaseStrings.products)
-  //         .where(FirebaseStrings.id, whereIn: productId)
-  //         .get();
-  //     return Right(List.from(response.docs.map((e) => ProductModel.fromJson(e.data(),),),),);
-  //   } catch (e) {
-  //     throw e;
-  //     return Left(e.toString());
-  //   }
-  // }
 
   Future<Either<String, List<ProductModel>>> getAllFavoriteProduct(List<int> productId) async {
     try {

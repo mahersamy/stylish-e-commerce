@@ -63,7 +63,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       children: [
                         ratingSelection(context, widget.productModel),
                         Text(
-                          widget.productModel.name!,
+                          widget.productModel.name,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         SizedBox(

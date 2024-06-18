@@ -6,7 +6,7 @@ import 'package:stylish/core/utils/app_colors.dart';
 import '../../logic/cubits/home_cubit.dart';
 
 class SizeSelectionItem extends StatefulWidget {
-   SizeSelectionItem({super.key, required this.sizes });
+   const SizeSelectionItem({super.key, required this.sizes });
 
   final List<String> sizes;
 

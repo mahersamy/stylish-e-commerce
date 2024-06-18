@@ -8,3 +8,9 @@ final class CartInitial extends CartState {}
 final class CounterChanged extends CartState {}
 
 final class TotalPriceChanged extends CartState {}
+
+
+
+final class SetAddressSuccess extends CartState {}
+
+final class SetAddressError extends CartState {}

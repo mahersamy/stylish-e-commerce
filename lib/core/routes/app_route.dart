@@ -7,6 +7,7 @@ import 'package:stylish/features/home/presention/screens/product_detail_screen.d
 
 import '../ shared_model/cart_model.dart';
 import '../../features/auth/presentions/screens/sign_in_screen.dart';
+import '../../features/cart/presentions/screens/cheackout_screen.dart';
 import '../../features/home/data/models/home_model.dart';
 import '../../features/home/data/models/product_model.dart';
 import '../../features/home/presention/screens/all_category_screen.dart';
@@ -27,6 +28,7 @@ class Routes {
   static const String categoryScreen = "/categoryScreen";
   static const String productDetailScreen = "/productDetailScreen";
   static const String cartScreen = "/cartScreen";
+  static const String checkoutScreen = "/checkoutScreen";
 
 }
 
@@ -79,6 +81,10 @@ class AppRoute {
         final List<CartModel> cartList = arguments;
         return MaterialPageRoute(
             builder: (_) => CartScreen(cartList: cartList));
+
+      case Routes.checkoutScreen:
+        return MaterialPageRoute(
+            builder: (_) => const CheckoutScreen());
     }
     return null;
   }
