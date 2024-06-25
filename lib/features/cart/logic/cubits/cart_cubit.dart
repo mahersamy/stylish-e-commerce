@@ -17,6 +17,8 @@ class CartCubit extends Cubit<CartState> {
 
   List<AddressModel> addressList = [];
 
+  int addressIndex = 0;
+
   void totalPriceCalculator(List<CartModel> cartList) {
     totalPrice = 0;
     for (var element in cartList) {
@@ -66,7 +68,7 @@ class CartCubit extends Cubit<CartState> {
     });
   }
 
-  getAddress() {
+  void getAddress() {
     cartRepo.getAddress().then((value) {
       value.fold(
               (l) {
@@ -74,10 +76,16 @@ class CartCubit extends Cubit<CartState> {
           },
               (r) {
             addressList = r;
-            print(r);
             emit(SetAddressSuccess());
           }
       );
     });
   }
+
+
+  void setAddressIndex(int index) {
+    addressIndex = index;
+    emit(SetAddressIndexSuccess());
+  }
+
 }

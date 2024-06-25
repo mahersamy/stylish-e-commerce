@@ -12,9 +12,6 @@ class CartRepo {
       final response = await FirebaseFirestore.instance
           .collection(FirebaseStrings.users)
           .doc(FirebaseAuth.instance.currentUser!.uid).get();
-
-      print(response.data()![FirebaseStrings.address]);
-
       return Right(List<AddressModel>.from(response.data()![FirebaseStrings.address].toList().map((e) => AddressModel.fromJson(e))));
     }catch(e){
       return const Left("please try again");

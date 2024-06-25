@@ -24,5 +24,7 @@ class TextStyles{
 
   static TextStyle? body14px = TextStyle(fontSize: 14.sp,color: AppColors.neutral1);
   static TextStyle? body12px = TextStyle(fontSize: 12.sp,color: AppColors.mainColor);
+  static TextStyle? body8px = TextStyle(fontSize: 8.sp,color: AppColors.neutral9);
+
 
 }

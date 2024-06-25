@@ -13,6 +13,7 @@ class AppTheme {
         headlineMedium: TextStyles.font27BlackBold,
         headlineSmall: TextStyles.font20BlackBold,
         bodySmall: TextStyles.body12px,
+        displaySmall: TextStyles.body8px,
         labelSmall: TextStyles.body14px,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(

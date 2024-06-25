@@ -14,3 +14,9 @@ final class TotalPriceChanged extends CartState {}
 final class SetAddressSuccess extends CartState {}
 
 final class SetAddressError extends CartState {}
+
+
+final class SetAddressIndexSuccess extends CartState {}
+
+
+

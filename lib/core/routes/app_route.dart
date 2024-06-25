@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish/features/auth/presentions/screens/sign_up_screen.dart';
+import 'package:stylish/features/cart/presentions/screens/address_screen.dart';
 import 'package:stylish/features/cart/presentions/screens/cart_screen.dart';
 import 'package:stylish/features/home/presention/screens/home_layout.dart';
 import 'package:stylish/features/home/presention/screens/product_detail_screen.dart';
@@ -29,6 +30,8 @@ class Routes {
   static const String productDetailScreen = "/productDetailScreen";
   static const String cartScreen = "/cartScreen";
   static const String checkoutScreen = "/checkoutScreen";
+  static const String addressScreen = "/addressScreen";
+
 
 }
 
@@ -85,6 +88,10 @@ class AppRoute {
       case Routes.checkoutScreen:
         return MaterialPageRoute(
             builder: (_) => const CheckoutScreen());
+
+      case Routes.addressScreen:
+        return MaterialPageRoute(
+            builder: (_) => const AddressScreen());
     }
     return null;
   }

@@ -1,12 +1,16 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:stylish/core/helpers/extentions.dart';
 import 'package:stylish/features/cart/data/repository/cart_repo.dart';
 
+import '../../../../core/routes/app_route.dart';
 import '../../../../core/shared_widgets/custom_button.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../data/models/address_model.dart';
 import '../../logic/cubits/cart_cubit.dart';
+import '../widgets/address_item.dart';
 import '../widgets/cart_item.dart';
 
 class CheckoutScreen extends StatefulWidget {
@@ -31,13 +35,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       listener: (context, state) {
         // TODO: implement listener
       },
-      buildWhen: (prevState, cartState) {
-        if (cartState is TotalPriceChanged) {
-          return true;
-        } else {
-          return false;
-        }
-      },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -50,11 +47,29 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           body: Padding(
               padding: const EdgeInsets.all(25.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  ConditionalBuilder(
+                    condition: BlocProvider.of<CartCubit>(context)
+                        .addressList
+                        .isNotEmpty,
+                    builder: (context) => InkWell(
+                      onTap: () => context.pushNamed(Routes.addressScreen),
+                      child: AddressItem(
+                        addressModel: BlocProvider.of<CartCubit>(context)
+                                .addressList[
+                            BlocProvider.of<CartCubit>(context).addressIndex],
+                        isSelect: false,
+                      ),
+                    ),
+                    fallback: (context) => SizedBox(
+                      height: 5.h,
+                    ),
+                  ),
                   Expanded(
                     child: ListView.separated(
                       itemBuilder: (context, index) =>
-                          CartItem(cartModel: cartList[index]),
+                          CartItem(cartModel: cartList[index], isChange: false),
                       separatorBuilder: (context, index) => const Divider(),
                       itemCount: cartList.length,
                     ),
