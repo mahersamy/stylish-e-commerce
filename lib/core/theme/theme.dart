@@ -32,6 +32,10 @@ class AppTheme {
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: AppColors.neutral4),
         ),
+        focusColor: AppColors.mainColor,
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: AppColors.mainColor),
+        ),
         border:const UnderlineInputBorder(
           borderSide: BorderSide(color: AppColors.mainColor),
         ),
