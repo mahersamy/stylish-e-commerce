@@ -18,4 +18,17 @@ class FirebaseStrings {
   static const String rating = "rating";
   static const String sizes = "sizes";
 
+
+
+  static const String firstName = "firstName";
+  static const String lastName = "lastName";
+  static const String streetAddress = "streetAddress";
+  static const String city = "city";
+  static const String country = "country";
+  static const String email = "email";
+  static const String phoneNumber = "phoneNumber";
+
+  static const String address = "address";
+
+
 }

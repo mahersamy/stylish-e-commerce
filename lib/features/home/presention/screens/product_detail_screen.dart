@@ -49,7 +49,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           canPop: false,
           onPopInvoked: (val){
             BlocProvider.of<HomeCubit>(context).getAllFavoriteProduct();
-
           },
           child: Scaffold(
             body: SingleChildScrollView(
@@ -63,7 +62,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       children: [
                         ratingSelection(context, widget.productModel),
                         Text(
-                          widget.productModel.name!,
+                          widget.productModel.name,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         SizedBox(
@@ -97,7 +96,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 25).w,
                       child: Text(
                         "\$ ${widget.productModel.price.toDouble()}",
-                        style: Theme.of(context).textTheme.displaySmall,
+                        style: Theme.of(context).textTheme.headlineMedium,
                       ),
                     ),
                     Container(

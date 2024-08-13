@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish/features/auth/presentions/screens/sign_up_screen.dart';
+import 'package:stylish/features/cart/presentions/screens/address_screen.dart';
 import 'package:stylish/features/cart/presentions/screens/cart_screen.dart';
+import 'package:stylish/features/cart/presentions/screens/new_address_screen.dart';
+import 'package:stylish/features/cart/presentions/screens/pay_screen.dart';
 import 'package:stylish/features/home/presention/screens/home_layout.dart';
 import 'package:stylish/features/home/presention/screens/product_detail_screen.dart';
 
 import '../ shared_model/cart_model.dart';
 import '../../features/auth/presentions/screens/sign_in_screen.dart';
+import '../../features/cart/presentions/screens/cheackout_screen.dart';
 import '../../features/home/data/models/home_model.dart';
 import '../../features/home/data/models/product_model.dart';
 import '../../features/home/presention/screens/all_category_screen.dart';
@@ -27,6 +31,13 @@ class Routes {
   static const String categoryScreen = "/categoryScreen";
   static const String productDetailScreen = "/productDetailScreen";
   static const String cartScreen = "/cartScreen";
+  static const String checkoutScreen = "/checkoutScreen";
+  static const String addressScreen = "/addressScreen";
+  static const String newAddressScreen = "/newAddressScreen";
+  static const String payScreen = "/payScreen";
+
+
+
 
 }
 
@@ -79,7 +90,22 @@ class AppRoute {
         final List<CartModel> cartList = arguments;
         return MaterialPageRoute(
             builder: (_) => CartScreen(cartList: cartList));
+
+      case Routes.checkoutScreen:
+        return MaterialPageRoute(
+            builder: (_) => const CheckoutScreen());
+
+      case Routes.addressScreen:
+        return MaterialPageRoute(
+            builder: (_) => const AddressScreen());
+      case Routes.newAddressScreen:
+        return MaterialPageRoute(
+            builder: (_) => const NewAddressScreen());
+      case Routes.payScreen:
+        return MaterialPageRoute(
+            builder: (_) =>  PayScreen());
     }
+
     return null;
   }
 }

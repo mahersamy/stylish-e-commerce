@@ -30,7 +30,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   addToCart(ProductModel productModel){
     bool isAdded=false;
-    cartList.forEach((element){
+    for (var element in cartList) {
       if(element.productModel.id==productModel.id){
         element.quantity++;
         element.selectedSize=selectedSize!;
@@ -38,7 +38,7 @@ class HomeCubit extends Cubit<HomeState> {
         isAdded=true;
         return;
       }
-    });
+    }
 
     if(isAdded){
       emit(UpdateCartSuccess());

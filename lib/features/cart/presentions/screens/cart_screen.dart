@@ -2,7 +2,9 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish/core/%20shared_model/cart_model.dart';
+import 'package:stylish/core/helpers/extentions.dart';
 
+import '../../../../core/routes/app_route.dart';
 import '../../../../core/shared_widgets/custom_button.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../logic/cubits/cart_cubit.dart';
@@ -22,6 +24,7 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   void initState() {
+    BlocProvider.of<CartCubit>(context).cartList = widget.cartList;
     BlocProvider.of<CartCubit>(context).totalPriceCalculator(widget.cartList);
     super.initState();
   }
@@ -41,7 +44,7 @@ class _CartScreenState extends State<CartScreen> {
       },
       builder: (context, state) {
         return Scaffold(
-            appBar: AppBar(),
+            appBar: AppBar(title:  Text("CART",style: Theme.of(context).textTheme.headlineSmall,),centerTitle: true,),
             body: ConditionalBuilder(
               condition: widget.cartList.isNotEmpty,
               builder: (context) =>
@@ -62,9 +65,10 @@ class _CartScreenState extends State<CartScreen> {
                             Text("${BlocProvider.of<CartCubit>(context).totalPrice} EGP",style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.mainColor),)
                           ],
                         ),
-                        SizedBox(height: 20,),
+                        const SizedBox(height: 20,),
                         CustomButton(
                           onPressed: () {
+                            context.pushNamed(Routes.checkoutScreen);
                           },
                           height: 50,
                           width: 325,

@@ -12,4 +12,13 @@ class CartModel{
     required this.selectedColor,
     required this.selectedSize
   });
+
+  toJson(){
+    return {
+      "productModel":productModel.toJson(),
+      "quantity":quantity,
+      "selectedColor":selectedColor,
+      "selectedSize":selectedSize,
+    };
+  }
 }

@@ -13,6 +13,7 @@ class AppTheme {
         headlineMedium: TextStyles.font27BlackBold,
         headlineSmall: TextStyles.font20BlackBold,
         bodySmall: TextStyles.body12px,
+        displaySmall: TextStyles.body8px,
         labelSmall: TextStyles.body14px,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -30,6 +31,10 @@ class AppTheme {
         labelStyle: TextStyles.body14px!.copyWith(color: AppColors.neutral4),
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: AppColors.neutral4),
+        ),
+        focusColor: AppColors.mainColor,
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: AppColors.mainColor),
         ),
         border:const UnderlineInputBorder(
           borderSide: BorderSide(color: AppColors.mainColor),
