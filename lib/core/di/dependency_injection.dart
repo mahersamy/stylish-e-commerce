@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stylish/features/auth/data/repository/auth_repo.dart';
 import 'package:stylish/features/auth/logic/cubits/auth_cubit.dart';
@@ -7,6 +8,8 @@ import 'package:stylish/features/home/data/repository/home_repo.dart';
 import 'package:stylish/features/home/logic/cubits/home_cubit.dart';
 
 import '../../features/onboarding/logic/cubit/onboarding_cubit.dart';
+import '../database/api/api_consumer.dart';
+import '../database/api/dio_consumer.dart';
 import '../database/cache/cache_helper.dart';
 
 GetIt getIt = GetIt.instance;
@@ -27,8 +30,10 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<CartRepo>(()=>CartRepo());
 
 
-  //database
+  getIt.registerLazySingleton<Dio>(() => Dio());
+  getIt.registerLazySingleton<ApiConsumer>(() => DioConsumer(dio: getIt()));
   getIt.registerLazySingleton<CacheHelper>(() => CacheHelper());
+
 
 
 }

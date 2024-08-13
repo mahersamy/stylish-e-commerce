@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stylish/core/helpers/extentions.dart';
-import 'package:stylish/features/cart/data/repository/cart_repo.dart';
+import 'package:stylish/core/helpers/toast_helper.dart';
 
 import '../../../../core/routes/app_route.dart';
 import '../../../../core/shared_widgets/custom_button.dart';
 import '../../../../core/utils/app_colors.dart';
-import '../../data/models/address_model.dart';
 import '../../logic/cubits/cart_cubit.dart';
 import '../widgets/address_item.dart';
 import '../widgets/cart_item.dart';
@@ -33,7 +32,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
     return BlocConsumer<CartCubit, CartState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if(state is PaymentProcessSuccess){
+          ToastHelper().showSuccessToast("Payment successful");
+          context.pushNamed(Routes.payScreen);
+
+        }else if(state is PaymentProcessError){
+          ToastHelper().showErrorToast("Payment failed");
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -94,7 +99,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     height: 20,
                   ),
                   CustomButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      BlocProvider.of<CartCubit>(context).pay();
+
+
+
+                    },
                     height: 50,
                     width: 325,
                     color: AppColors.mainColor,

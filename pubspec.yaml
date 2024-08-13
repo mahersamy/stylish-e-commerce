@@ -52,9 +52,15 @@ dependencies:
 
 
 
+
+
+
   conditional_builder_null_safety: ^0.0.6
   flutter_svg: ^2.0.10+1
   dartz: ^0.10.1
+  webview_flutter: ^3.0.4
+
+
 
 
 

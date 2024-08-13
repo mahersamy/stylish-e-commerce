@@ -43,4 +43,19 @@ class ProductModel {
 
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data =  Map<String, dynamic>();
+    data[FirebaseStrings.id] = id;
+    data[FirebaseStrings.name] = name;
+    data[FirebaseStrings.price] = price;
+    data[FirebaseStrings.image] = image;
+    data[FirebaseStrings.description] = description;
+    data[FirebaseStrings.rating] = rating;
+    data[FirebaseStrings.category] = categoryName;
+    data[FirebaseStrings.sizes] = sizes;
+    data[FirebaseStrings.colors] = colors;
+    data[FirebaseStrings.headImages] = headImages;
+    return data;
+  }
 }

@@ -22,5 +22,22 @@ final class SetAddressIndexSuccess extends CartState {}
 final class RemoveAddress extends CartState {}
 
 
+final class GetApiKeySuccess extends CartState {}
+
+
+final class GetApiKeyError extends CartState {}
+
+
+final class PaymentLoading extends CartState {}
+
+final class PaymentProcessSuccess extends CartState {
+   final String payUrl;
+  PaymentProcessSuccess(this.payUrl);
+}
+
+final class PaymentProcessError extends CartState {}
+
+
+
 
 
