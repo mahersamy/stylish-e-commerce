@@ -42,7 +42,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         if(state is GetAllFavoriteProductSuccess){
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: CustomGridView(productModel: state.productModels),
+            child: CustomGridView(products: state.productModels),
           );
         }else{
           return const Center(child: CustomCircular());

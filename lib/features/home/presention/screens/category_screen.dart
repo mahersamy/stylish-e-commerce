@@ -59,7 +59,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         color: AppColors.neutral9,
                         child: state is GetCategoryProductSuccess || BlocProvider.of<HomeCubit>(context).categoryProductList.isNotEmpty
                             ? CustomGridView(
-                                productModel: BlocProvider.of<HomeCubit>(context).categoryProductList,
+                                products: BlocProvider.of<HomeCubit>(context).categoryProductList,
                               )
                             : const Center(child: CustomCircular()),
                       ),

@@ -7,6 +7,7 @@ import 'package:stylish/features/cart/presentions/screens/new_address_screen.dar
 import 'package:stylish/features/cart/presentions/screens/pay_screen.dart';
 import 'package:stylish/features/home/presention/screens/home_layout.dart';
 import 'package:stylish/features/home/presention/screens/product_detail_screen.dart';
+import 'package:stylish/features/settings/presention/screens/setting_screen.dart';
 
 import '../ shared_model/cart_model.dart';
 import '../../features/auth/presentions/screens/sign_in_screen.dart';
@@ -18,6 +19,7 @@ import '../../features/home/presention/screens/category_screen.dart';
 import '../../features/onboarding/logic/cubit/onboarding_cubit.dart';
 import '../../features/onboarding/presention/screens/loading_screen.dart';
 import '../../features/onboarding/presention/screens/onboarding_screen.dart';
+import '../../features/search/presention/screens/search_screen.dart';
 import '../di/dependency_injection.dart';
 
 class Routes {
@@ -35,6 +37,10 @@ class Routes {
   static const String addressScreen = "/addressScreen";
   static const String newAddressScreen = "/newAddressScreen";
   static const String payScreen = "/payScreen";
+
+  static const String searchScreen = "/searchScreen";
+  static const String settingScreen = "/settingScreen";
+
 
 
 
@@ -98,12 +104,23 @@ class AppRoute {
       case Routes.addressScreen:
         return MaterialPageRoute(
             builder: (_) => const AddressScreen());
+
       case Routes.newAddressScreen:
         return MaterialPageRoute(
             builder: (_) => const NewAddressScreen());
+
       case Routes.payScreen:
         return MaterialPageRoute(
-            builder: (_) =>  PayScreen());
+            builder: (_) =>  const PayScreen());
+
+      case Routes.searchScreen:
+        return MaterialPageRoute(
+            builder: (_) =>  const SearchScreen());
+
+      case Routes.settingScreen:
+        return MaterialPageRoute(
+            builder: (_) =>  const SettingScreen());
+
     }
 
     return null;

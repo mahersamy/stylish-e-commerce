@@ -12,7 +12,7 @@ class HomeLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit,HomeState>(
-      buildWhen: (prevState, state) => state is HomeInitial,
+
       builder: (context, state) {
          return Scaffold(
            appBar: AppBar(title: Image.asset(AppAssets.logo),),
@@ -21,7 +21,7 @@ class HomeLayout extends StatelessWidget {
                .screens[BlocProvider
                .of<HomeCubit>(context)
                .currentIndex],
-           bottomNavigationBar:const CustomBottomNavBar(),
+           bottomNavigationBar:  state is HomeInitial? const CustomBottomNavBar(): const CustomBottomNavBar(),
          );
 
       },
