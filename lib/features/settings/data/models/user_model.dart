@@ -3,7 +3,7 @@ import 'package:stylish/core/utils/firebase_strings.dart';
 class UserModel {
   final String name;
   final String email;
-  final String phone;
+  final String? phone;
 
   UserModel({required this.name, required this.email, required this.phone});
 
@@ -11,7 +11,7 @@ class UserModel {
     return UserModel(
       name: json[FirebaseStrings.name],
       email: json[FirebaseStrings.email],
-      phone: json[FirebaseStrings.phone],
+      phone: json[FirebaseStrings.phoneNumber],
     );
   }
 
@@ -19,7 +19,7 @@ class UserModel {
     return {
       FirebaseStrings.name: name,
       FirebaseStrings.email: email,
-      FirebaseStrings.phone: phone,
+      FirebaseStrings.phoneNumber: phone,
     };
   }
 

@@ -20,6 +20,7 @@ import '../../features/onboarding/logic/cubit/onboarding_cubit.dart';
 import '../../features/onboarding/presention/screens/loading_screen.dart';
 import '../../features/onboarding/presention/screens/onboarding_screen.dart';
 import '../../features/search/presention/screens/search_screen.dart';
+import '../../features/settings/presention/screens/account_setting_screen.dart';
 import '../di/dependency_injection.dart';
 
 class Routes {
@@ -40,6 +41,8 @@ class Routes {
 
   static const String searchScreen = "/searchScreen";
   static const String settingScreen = "/settingScreen";
+  static const String accountSettingScreen = "/accountSettingScreen";
+
 
 
 
@@ -120,6 +123,12 @@ class AppRoute {
       case Routes.settingScreen:
         return MaterialPageRoute(
             builder: (_) =>  const SettingScreen());
+
+
+      case Routes.accountSettingScreen:
+        return MaterialPageRoute(
+            builder: (_) =>  const AccountSettingScreen()
+        );
 
     }
 

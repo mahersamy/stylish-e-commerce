@@ -11,6 +11,7 @@ import 'core/routes/app_route.dart';
 import 'core/theme/theme.dart';
 import 'features/auth/logic/cubits/auth_cubit.dart';
 import 'features/search/logic/cubits/search_cubit.dart';
+import 'features/settings/logic/cubit/setting_cubit.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -27,6 +28,7 @@ void main() async {
         BlocProvider(create: (context) => getIt<HomeCubit>()),
         BlocProvider(create: (context) => getIt<CartCubit>()),
         BlocProvider(create: (context) => getIt<SearchCubit>()),
+        BlocProvider(create: (context) => getIt<SettingCubit>()),
 
       ],
       child: MyApp(),
