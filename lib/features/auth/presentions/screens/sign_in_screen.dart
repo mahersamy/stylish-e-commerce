@@ -154,7 +154,7 @@ class SignInScreen extends StatelessWidget {
                             },
                             height: 40,
                             width: 325,
-                            color: AppColors.neutral9,
+                            color:  Theme.of(context).canvasColor,
                           ),
                           SizedBox(
                             height: 10.h,
@@ -183,7 +183,8 @@ class SignInScreen extends StatelessWidget {
                             },
                             height: 40,
                             width: 325,
-                            color: AppColors.neutral9,
+                            color: Theme.of(context).canvasColor,
+                            // AppColors.neutral9:,
                           ),
                           SizedBox(height: 15.h,),
                           Row(

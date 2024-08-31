@@ -127,7 +127,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           BlocProvider.of<HomeCubit>(context).addToCart(widget.productModel);
 
                           print(BlocProvider.of<HomeCubit>(context).cartList[0].selectedSize);
-                        },
+        },
                         height: 40,
                         width: 138)
                   ],

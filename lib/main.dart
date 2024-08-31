@@ -52,6 +52,7 @@ class MyApp extends StatelessWidget {
         title: 'Stylish',
         theme: AppTheme().lightTheme(),
         darkTheme: AppTheme().darkTheme(),
+
         themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,
         onGenerateRoute: appRoute.generateRoute,

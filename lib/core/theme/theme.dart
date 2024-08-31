@@ -7,8 +7,10 @@ import '../utils/text_style.dart';
 class AppTheme {
   ThemeData lightTheme() {
     return ThemeData(
-      brightness: Brightness.light,
+      brightness:Brightness.light,
       primaryColor: AppColors.mainColor,
+      canvasColor: AppColors.neutral9,
+
       textTheme: TextTheme(
         headlineLarge: TextStyles.font54WhiteBold,
         headlineMedium: TextStyles.font27BlackBold,
@@ -54,9 +56,10 @@ class AppTheme {
     return ThemeData(
       brightness: Brightness.dark,
       primaryColor: AppColors.mainColor,
+      canvasColor: AppColors.neutral1,
       textTheme: TextTheme(
         headlineLarge: TextStyles.font54WhiteBold,
-        headlineMedium: TextStyles.font27BlackBold,
+        headlineMedium: TextStyles.font27BlackBold!.copyWith(color: AppColors.neutral9),
         headlineSmall: TextStyles.font20BlackBold,
         bodySmall: TextStyles.body12px,
         displaySmall: TextStyles.body8px,
@@ -64,13 +67,14 @@ class AppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          // padding:WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 10.h,horizontal: 120.w)),
           backgroundColor: WidgetStateProperty.all(AppColors.mainColor),
+          elevation: WidgetStateProperty.all(10),
           shape: WidgetStateProperty.all(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(18.w),
             ),
           ),
+
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
