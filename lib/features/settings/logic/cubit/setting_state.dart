@@ -12,3 +12,7 @@ final class GetProfileError extends SettingState {}
 
 final class ChangeProfileSuccess extends SettingState {}
 final class ChangeProfileError extends SettingState {}
+
+
+final class LogOut extends SettingState {}
+

@@ -26,7 +26,13 @@ class _SettingScreenState extends State<SettingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SettingCubit, SettingState>(
+    return BlocConsumer<SettingCubit, SettingState>(
+      listener: (context, state) {
+        if (state is LogOut) {
+          print(state);
+          context.pushReplacementNamed(Routes.signInScreen);
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -35,8 +41,7 @@ class _SettingScreenState extends State<SettingScreen> {
           ),
           body: ConditionalBuilder(
             condition: state is GetProfileSuccess,
-            fallback: (context) =>
-                const Center(child: CustomCircular()),
+            fallback: (context) => const Center(child: CustomCircular()),
             builder: (context) => Padding(
               padding: const EdgeInsets.all(25.0).w,
               child: Column(
@@ -73,7 +78,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   SettingItem(
                     icon: Icons.logout,
                     title: "Log out",
-                    onTap: () {},
+                    onTap: () {
+                      BlocProvider.of<SettingCubit>(context).logout();
+                    },
                   ),
                 ],
               ),

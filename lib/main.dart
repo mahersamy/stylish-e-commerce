@@ -51,6 +51,8 @@ class MyApp extends StatelessWidget {
       builder: (_, child) => MaterialApp(
         title: 'Stylish',
         theme: AppTheme().lightTheme(),
+        darkTheme: AppTheme().darkTheme(),
+        themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,
         onGenerateRoute: appRoute.generateRoute,
         initialRoute: Routes.signInScreen,
