@@ -5,10 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stylish/core/helpers/extentions.dart';
 import 'package:stylish/core/shared_widgets/custom_circular.dart';
+import 'package:stylish/core/utils/app_colors.dart';
 
 import '../../../../core/routes/app_route.dart';
 import '../../logic/cubit/setting_cubit.dart';
 import '../widgets/setting_item.dart';
+import '../widgets/theme_button.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -29,7 +31,6 @@ class _SettingScreenState extends State<SettingScreen> {
     return BlocConsumer<SettingCubit, SettingState>(
       listener: (context, state) {
         if (state is LogOut) {
-          print(state);
           context.pushReplacementNamed(Routes.signInScreen);
         }
       },
@@ -38,9 +39,10 @@ class _SettingScreenState extends State<SettingScreen> {
           appBar: AppBar(
             title: const Text("Settings"),
             centerTitle: true,
+            actions: const [ThemeButton()],
           ),
           body: ConditionalBuilder(
-            condition: state is GetProfileSuccess,
+            condition: state is GetProfileSuccess || state is ChangeTheme,
             fallback: (context) => const Center(child: CustomCircular()),
             builder: (context) => Padding(
               padding: const EdgeInsets.all(25.0).w,
@@ -68,19 +70,14 @@ class _SettingScreenState extends State<SettingScreen> {
                     height: 20.h,
                   ),
                   SettingItem(
-                    icon: Icons.color_lens_outlined,
-                    title: "Theme",
-                    onTap: () {},
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  SettingItem(
                     icon: Icons.logout,
                     title: "Log out",
                     onTap: () {
                       BlocProvider.of<SettingCubit>(context).logout();
                     },
+                  ),
+                  SizedBox(
+                    height: 20.h,
                   ),
                 ],
               ),

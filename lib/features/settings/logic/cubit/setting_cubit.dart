@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:stylish/features/settings/data/repository/setting_repo.dart';
 
@@ -13,6 +14,8 @@ class SettingCubit extends Cubit<SettingState> {
 
   late UserModel userModel;
   final SettingRepo settingRepo;
+   ThemeMode themeMode = ThemeMode.system;
+  bool isBlack=false;
 
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -55,10 +58,17 @@ class SettingCubit extends Cubit<SettingState> {
     emit(SettingLoading());
     await FirebaseAuth.instance.signOut();
     emit(LogOut());
-
-
-
-
   }
 
+
+  void changeThemeMode(bool isBlack) {
+    if(isBlack){
+      this.isBlack=true;
+       themeMode=ThemeMode.dark;
+    }else{
+      this.isBlack=false;
+      themeMode=ThemeMode.light;
+    }
+    emit(ChangeTheme());
+  }
 }

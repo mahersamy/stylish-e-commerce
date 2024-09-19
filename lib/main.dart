@@ -48,16 +48,28 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_, child) => MaterialApp(
-        title: 'Stylish',
-        theme: AppTheme().lightTheme(),
-        darkTheme: AppTheme().darkTheme(),
-
-        themeMode: ThemeMode.dark,
-        debugShowCheckedModeBanner: false,
-        onGenerateRoute: appRoute.generateRoute,
-        initialRoute: Routes.signInScreen,
-      ),
+      builder: (_, child) =>
+          BlocBuilder<SettingCubit, SettingState>(
+            buildWhen: (previous, current) {
+              if(current is ChangeTheme) {
+                return true;
+              }
+              return true;
+            },
+            builder: (context, state) {
+              return MaterialApp(
+                title: 'Stylish',
+                theme: AppTheme().lightTheme(),
+                darkTheme: AppTheme().darkTheme(),
+                themeMode: BlocProvider
+                    .of<SettingCubit>(context)
+                    .themeMode,
+                debugShowCheckedModeBanner: false,
+                onGenerateRoute: appRoute.generateRoute,
+                initialRoute: Routes.signInScreen,
+              );
+            },
+          ),
     );
   }
 }

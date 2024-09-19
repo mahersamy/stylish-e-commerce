@@ -16,3 +16,5 @@ final class ChangeProfileError extends SettingState {}
 
 final class LogOut extends SettingState {}
 
+final class ChangeTheme extends SettingState {}
+
