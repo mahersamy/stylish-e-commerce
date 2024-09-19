@@ -7,12 +7,12 @@ import '../../data/models/product_model.dart';
 
 
 class CustomGridView extends StatelessWidget {
-  const CustomGridView({super.key, this.productModel=const []});
-  final List<ProductModel> productModel;
+  const CustomGridView({super.key, this.products=const []});
+  final List<ProductModel> products;
   @override
   Widget build(BuildContext context) {
     return ConditionalBuilder(
-      condition: productModel.isNotEmpty,
+      condition: products.isNotEmpty,
       fallback: (context)=> const Center(child: Text("We did not found any product")),
       builder: (context)=> GridView.builder(
           shrinkWrap: true,
@@ -25,9 +25,9 @@ class CustomGridView extends StatelessWidget {
             crossAxisSpacing: 10.w,
             childAspectRatio: 0.8,
           ),
-          itemCount: productModel.length,
+          itemCount: products.length,
           itemBuilder: (context, index) =>
-              ProductItem(productModel: productModel[index])),
+              ProductItem(productModel: products[index])),
     );
   }
 }

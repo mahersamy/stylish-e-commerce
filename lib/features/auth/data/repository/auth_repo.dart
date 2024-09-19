@@ -39,7 +39,6 @@ class AuthRepo {
 
       // Once signed in, return the UserCredential
       UserCredential userCredential =await FirebaseAuth.instance.signInWithCredential(credential);
-
       if(isSignUp) {
         await addUserToFireStoreWithCredential(userCredential);
       }

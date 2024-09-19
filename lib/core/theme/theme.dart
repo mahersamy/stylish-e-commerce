@@ -7,7 +7,10 @@ import '../utils/text_style.dart';
 class AppTheme {
   ThemeData lightTheme() {
     return ThemeData(
+      brightness:Brightness.light,
       primaryColor: AppColors.mainColor,
+      canvasColor: AppColors.neutral9,
+
       textTheme: TextTheme(
         headlineLarge: TextStyles.font54WhiteBold,
         headlineMedium: TextStyles.font27BlackBold,
@@ -50,6 +53,49 @@ class AppTheme {
   }
 
   ThemeData darkTheme() {
-    return ThemeData();
+    return ThemeData(
+      brightness: Brightness.dark,
+      primaryColor: AppColors.mainColor,
+      canvasColor: AppColors.neutral1,
+      textTheme: TextTheme(
+        headlineLarge: TextStyles.font54WhiteBold,
+        headlineMedium: TextStyles.font27BlackBold!.copyWith(color: AppColors.neutral9),
+        headlineSmall: TextStyles.font20BlackBold,
+        bodySmall: TextStyles.body12px,
+        displaySmall: TextStyles.body8px,
+        labelSmall: TextStyles.body14px,
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: WidgetStateProperty.all(AppColors.mainColor),
+          elevation: WidgetStateProperty.all(10),
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.w),
+            ),
+          ),
+
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        labelStyle: TextStyles.body14px!.copyWith(color: AppColors.neutral4),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: AppColors.neutral4),
+        ),
+        focusColor: AppColors.mainColor,
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: AppColors.mainColor),
+        ),
+        border:const UnderlineInputBorder(
+          borderSide: BorderSide(color: AppColors.mainColor),
+        ),
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        type: BottomNavigationBarType.fixed, // Fixed
+        selectedItemColor: AppColors.mainColor,
+        unselectedItemColor: AppColors.neutral4,
+        elevation: 10,
+      ),
+    );
   }
 }

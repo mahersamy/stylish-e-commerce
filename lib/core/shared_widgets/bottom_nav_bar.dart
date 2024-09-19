@@ -14,6 +14,12 @@ class CustomBottomNavBar extends StatelessWidget {
       onTap: (index){
         if(index == 2){
           context.pushNamed(Routes.cartScreen,arguments:BlocProvider.of<HomeCubit>(context).cartList);
+        }else if(index == 3){
+          context.pushNamed(Routes.searchScreen);
+
+        }else if(index == 4){
+          context.pushNamed(Routes.settingScreen);
+
         }else{
           BlocProvider.of<HomeCubit>(context).changeIndex(index);
         }

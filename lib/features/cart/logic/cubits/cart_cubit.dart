@@ -33,8 +33,7 @@ class CartCubit extends Cubit<CartState> {
   WebViewController? webViewController;
 
   String payUrl = "";
-  static const String _apiKey =
-      'ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmpiR0Z6Y3lJNklrMWxjbU5vWVc1MElpd2ljSEp2Wm1sc1pWOXdheUk2TnpFNU1UYzVMQ0p1WVcxbElqb2lNVGN5TURJMk5qYzBNUzR4TnpRME1EVWlmUS5DbGVrZFY1OFloMUZWVEZKRVN2TlVHM0o2OGZRa0gtZFhnbmctTm11RUpnU1BYQ3podTVybFZVYzJVdzZRMnpqRFBkMDhwZ3BNb19JRzFiaXNTV05DQQ==';
+  static const String _apiKey = 'ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmpiR0Z6Y3lJNklrMWxjbU5vWVc1MElpd2ljSEp2Wm1sc1pWOXdheUk2TnpFNU1UYzVMQ0p1WVcxbElqb2lNVGN5TURJMk5qYzBNUzR4TnpRME1EVWlmUS5DbGVrZFY1OFloMUZWVEZKRVN2TlVHM0o2OGZRa0gtZFhnbmctTm11RUpnU1BYQ3podTVybFZVYzJVdzZRMnpqRFBkMDhwZ3BNb19JRzFiaXNTV05DQQ==';
 
   void totalPriceCalculator(List<CartModel> cartList) {
     totalPrice = 0;

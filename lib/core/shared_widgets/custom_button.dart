@@ -23,6 +23,7 @@ class CustomButton extends StatelessWidget {
       width: width.w,
       height: height.h,
       child: ElevatedButton(
+
         style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
             backgroundColor: WidgetStateProperty.all(color)),
         onPressed: onPressed,

@@ -27,6 +27,8 @@ class FirebaseStrings {
   static const String country = "country";
   static const String email = "email";
   static const String phoneNumber = "phoneNumber";
+  static const String phone = "phone";
+
 
   static const String address = "address";
 

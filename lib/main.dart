@@ -10,6 +10,8 @@ import 'core/di/dependency_injection.dart';
 import 'core/routes/app_route.dart';
 import 'core/theme/theme.dart';
 import 'features/auth/logic/cubits/auth_cubit.dart';
+import 'features/search/logic/cubits/search_cubit.dart';
+import 'features/settings/logic/cubit/setting_cubit.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -25,6 +27,9 @@ void main() async {
         BlocProvider(create: (context) => getIt<AuthCubit>()),
         BlocProvider(create: (context) => getIt<HomeCubit>()),
         BlocProvider(create: (context) => getIt<CartCubit>()),
+        BlocProvider(create: (context) => getIt<SearchCubit>()),
+        BlocProvider(create: (context) => getIt<SettingCubit>()),
+
       ],
       child: MyApp(),
     ),
@@ -43,13 +48,28 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_, child) => MaterialApp(
-        title: 'Stylish',
-        theme: AppTheme().lightTheme(),
-        debugShowCheckedModeBanner: false,
-        onGenerateRoute: appRoute.generateRoute,
-        initialRoute: Routes.signInScreen,
-      ),
+      builder: (_, child) =>
+          BlocBuilder<SettingCubit, SettingState>(
+            buildWhen: (previous, current) {
+              if(current is ChangeTheme) {
+                return true;
+              }
+              return true;
+            },
+            builder: (context, state) {
+              return MaterialApp(
+                title: 'Stylish',
+                theme: AppTheme().lightTheme(),
+                darkTheme: AppTheme().darkTheme(),
+                themeMode: BlocProvider
+                    .of<SettingCubit>(context)
+                    .themeMode,
+                debugShowCheckedModeBanner: false,
+                onGenerateRoute: appRoute.generateRoute,
+                initialRoute: Routes.signInScreen,
+              );
+            },
+          ),
     );
   }
 }

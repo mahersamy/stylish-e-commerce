@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 10.h,
                   ),
                   hotDealHeader(context),
-                  CustomGridView(productModel: BlocProvider.of<HomeCubit>(context).homeModel!.products),
+                  CustomGridView(products: BlocProvider.of<HomeCubit>(context).homeModel!.products),
                 ],
               ),
             ),

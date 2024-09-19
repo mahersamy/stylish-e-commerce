@@ -6,8 +6,12 @@ import 'package:stylish/features/cart/data/repository/cart_repo.dart';
 import 'package:stylish/features/cart/logic/cubits/cart_cubit.dart';
 import 'package:stylish/features/home/data/repository/home_repo.dart';
 import 'package:stylish/features/home/logic/cubits/home_cubit.dart';
+import 'package:stylish/features/search/data/search_repo.dart';
+import 'package:stylish/features/settings/data/repository/setting_repo.dart';
 
 import '../../features/onboarding/logic/cubit/onboarding_cubit.dart';
+import '../../features/search/logic/cubits/search_cubit.dart';
+import '../../features/settings/logic/cubit/setting_cubit.dart';
 import '../database/api/api_consumer.dart';
 import '../database/api/dio_consumer.dart';
 import '../database/cache/cache_helper.dart';
@@ -21,6 +25,9 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<AuthCubit>(()=>AuthCubit(getIt()));
   getIt.registerLazySingleton<HomeCubit>(()=>HomeCubit(getIt()));
   getIt.registerLazySingleton<CartCubit>(()=>CartCubit(getIt()));
+  getIt.registerLazySingleton<SearchCubit>(()=>SearchCubit(getIt()));
+  getIt.registerLazySingleton<SettingCubit>(()=>SettingCubit(getIt()));
+
 
 
 
@@ -28,6 +35,9 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<AuthRepo>(()=>AuthRepo());
   getIt.registerLazySingleton<HomeRepo>(()=>HomeRepo());
   getIt.registerLazySingleton<CartRepo>(()=>CartRepo());
+  getIt.registerLazySingleton<SearchRepo>(()=>SearchRepo());
+  getIt.registerLazySingleton<SettingRepo>(()=>SettingRepo());
+
 
 
   getIt.registerLazySingleton<Dio>(() => Dio());
