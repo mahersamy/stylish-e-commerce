@@ -14,7 +14,7 @@ class SettingCubit extends Cubit<SettingState> {
 
   late UserModel userModel;
   final SettingRepo settingRepo;
-   ThemeMode themeMode = ThemeMode.system;
+   ThemeMode themeMode = ThemeMode.light;
   bool isBlack=false;
 
   TextEditingController nameController = TextEditingController();
