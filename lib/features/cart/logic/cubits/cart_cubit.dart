@@ -100,6 +100,8 @@ class CartCubit extends Cubit<CartState> {
         emit(SetAddressError());
       }, (r) {
         addressList = r;
+        print(addressList.isEmpty);
+        print("#######################################################################3");
         emit(SetAddressSuccess());
       });
     });
