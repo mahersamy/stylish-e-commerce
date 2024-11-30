@@ -22,6 +22,7 @@ class CheckoutScreen extends StatefulWidget {
 class _CheckoutScreenState extends State<CheckoutScreen> {
   @override
   void initState() {
+
     BlocProvider.of<CartCubit>(context).getAddress();
     super.initState();
   }
@@ -67,9 +68,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         isSelect: false,
                       ),
                     ),
-                    fallback: (context) => SizedBox(
-                      height: 5.h,
-                    ),
+                    fallback: (context) => CustomButton(widget: const Text("Add Address"), onPressed: () => context.pushNamed(Routes.addressScreen), height: 50, width: 350),
+
                   ),
                   Expanded(
                     child: ListView.separated(
